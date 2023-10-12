@@ -12,6 +12,7 @@ namespace Enumeracoes.Entities
         public DateTime Moment { get; set; }
         public OrderStatus Status { get; set; }
         List<OrderItem> Items { get; set; } = new List<OrderItem>();    
+        public Client Client { get; set; }
 
         public Order() { }
 
@@ -39,6 +40,22 @@ namespace Enumeracoes.Entities
                 sum += item.Price;
             }
             return sum;
+        }
+
+        public override string ToString()
+        {
+            StringBuilder builder = new StringBuilder();
+            builder.AppendLine("ORDER SUMARY:");
+            builder.AppendLine(Moment.ToString("dd/MM/yyyy HH:mm:ss"));
+            builder.AppendLine(Status.ToString());
+            builder.AppendLine(Client.ToString());
+
+            foreach (var item in Items)
+            {
+                builder.AppendLine(item.ToString());
+            }
+
+            return builder.ToString();
         }
     }
 }
