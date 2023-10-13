@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Globalization;
 
 namespace Enumeracoes.Entities
 {
@@ -29,9 +29,9 @@ namespace Enumeracoes.Entities
         public override string ToString()
         {
             StringBuilder builder = new StringBuilder();
-            builder.AppendLine($"{Product.Name}, {Price:c},");
-            builder.AppendLine($"{Quantity},");
-            builder.AppendLine($"Subtotal: {SubTotal():c}");
+            builder.Append($"{Product.Name}, {Price:c}, {Quantity}, ");
+            builder.Append($"Subtotal: R$ {SubTotal().ToString("F2", CultureInfo.InvariantCulture)}");
+
             return builder.ToString();
         }
     }

@@ -19,19 +19,19 @@ namespace Course
             Console.Write("Birth date (DD/MM/YYYY): ");
             DateTime birthDate = DateTime.Parse(Console.ReadLine());
 
-            Console.WriteLine("Enter order data");
+            Console.WriteLine("Enter order data: ");
             Console.Write("Status: ");
             OrderStatus status = Enum.Parse<OrderStatus>(Console.ReadLine());
             Client client = new Client(name, email, birthDate);
             Order order = new Order(DateTime.Now, status, client);
 
-            Console.Write("How many items to this order?");
+            Console.Write("How many items to this order? ");
             int quantityOrder = int.Parse(Console.ReadLine());
 
             Console.WriteLine("Enter order data:");
-            for (int i = 1; i < quantityOrder; i++)
+            for (int i = 0; i < quantityOrder; i++)
             {
-                Console.WriteLine($"Enter #{i} item data: ");
+                Console.WriteLine($"Enter #{i + 1} item data: ");
                 Console.Write("Product name: ");
                 string productName = Console.ReadLine();
 

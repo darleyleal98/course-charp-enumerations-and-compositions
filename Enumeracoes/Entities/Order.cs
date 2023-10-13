@@ -50,11 +50,12 @@ namespace Enumeracoes.Entities
             builder.AppendLine($"Client: {Client}");
             builder.AppendLine("Order Items:");
 
-            foreach (var item in Items)
+            foreach (OrderItem item in Items)
             {
                 builder.AppendLine(item.ToString());
             }
-            builder.AppendLine($"Total price: {Total():c)}");
+            builder.AppendLine($"Total price: R${Total().ToString("F2", CultureInfo.InvariantCulture)}");
+
             return builder.ToString();
         }
     }
