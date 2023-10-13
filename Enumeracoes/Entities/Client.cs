@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Enumeracoes.Entities
 {
@@ -23,8 +20,7 @@ namespace Enumeracoes.Entities
         public override string ToString()
         {
             StringBuilder builder = new StringBuilder();
-            builder.AppendLine($"Client: {Name}, ({BirthDate}) - {Email}");
-
+            builder.AppendLine($"Client: {Name}, ({BirthDate.ToString("dd/MM/yyyy")}) - {Email}");
             return builder.ToString();
         }
     }

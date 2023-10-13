@@ -10,6 +10,17 @@ namespace Enumeracoes.Entities
     {
         public int Quantity { get; set; }
         public double Price { get; set; }
+        public Product Product { get; set; }    
+
+        public OrderItem() { }
+
+        public OrderItem(int quantity, double price, Product product)
+        {
+            Quantity = quantity;
+            Price = price;
+            Product = product;
+        }
+
         public double SubTotal()
         {
             return Quantity * Price;
@@ -18,10 +29,9 @@ namespace Enumeracoes.Entities
         public override string ToString()
         {
             StringBuilder builder = new StringBuilder();
-            builder.AppendLine();
-            builder.AppendLine();
-            builder.AppendLine();
-
+            builder.AppendLine($"{Product.Name}, {Price:c},");
+            builder.AppendLine($"{Quantity},");
+            builder.AppendLine($"Subtotal: {SubTotal():c}");
             return builder.ToString();
         }
     }

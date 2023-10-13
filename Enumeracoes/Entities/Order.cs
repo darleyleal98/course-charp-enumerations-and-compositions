@@ -1,9 +1,8 @@
 ﻿using Enumeracoes.Entities.Enums;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Globalization;
 
 namespace Enumeracoes.Entities
 {
@@ -16,10 +15,11 @@ namespace Enumeracoes.Entities
 
         public Order() { }
 
-        public Order(DateTime moment, OrderStatus status)
+        public Order(DateTime moment, OrderStatus status, Client client)
         {
             Moment = moment;
             Status = status;
+            Client = client;
         }
 
         public void AddItem(OrderItem item)
@@ -34,10 +34,10 @@ namespace Enumeracoes.Entities
 
         public double Total()
         {
-            double sum = 0;
-            foreach (var item in Items)
+            double sum = 0.0;
+            foreach (OrderItem item in Items)
             {
-                sum += item.Price;
+                sum += item.SubTotal();
             }
             return sum;
         }
@@ -45,16 +45,16 @@ namespace Enumeracoes.Entities
         public override string ToString()
         {
             StringBuilder builder = new StringBuilder();
-            builder.AppendLine("ORDER SUMARY:");
-            builder.AppendLine(Moment.ToString("dd/MM/yyyy HH:mm:ss"));
-            builder.AppendLine(Status.ToString());
-            builder.AppendLine(Client.ToString());
+            builder.AppendLine($"Order moment: {Moment.ToString("dd/MM/yyyy HH:mm:ss")}");
+            builder.AppendLine($"Order status: {Status}");
+            builder.AppendLine($"Client: {Client}");
+            builder.AppendLine("Order Items:");
 
             foreach (var item in Items)
             {
                 builder.AppendLine(item.ToString());
             }
-
+            builder.AppendLine($"Total price: {Total():c)}");
             return builder.ToString();
         }
     }
